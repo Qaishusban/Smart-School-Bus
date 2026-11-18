@@ -1,0 +1,91 @@
+{
+  "expo": {
+    "name": "Smart School Bus",
+    "slug": "smart-school-bus-parent",
+    "version": "1.0.0",
+    "scheme": "smartbus",
+    "owner": "qaishos",
+    "orientation": "default",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "icon": "./assets/icon.png",
+    "ios": {
+      "bundleIdentifier": "com.qjordansoft.smartschoolbuslive",
+      "buildNumber": "24",
+      "supportsTablet": true,
+      "icon": "./assets/icon.png",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSLocationWhenInUseUsageDescription": "We use your location to show the school bus route and nearby stops.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "We use location services to support school bus tracking features.",
+        "NSUserNotificationUsageDescription": "We use notifications to alert parents about bus trip updates."
+      }
+    },
+    "android": {
+      "package": "com.qjordansoft.smartschoolbuslive",
+      "versionCode": 45,
+      "icon": "./assets/icon.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "POST_NOTIFICATIONS",
+        "VIBRATE",
+        "WAKE_LOCK"
+      ],
+      "googleServicesFile": "./google-services.json"
+    },
+    "plugins": [
+      "expo-notifications",
+      "expo-secure-store",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#07131F",
+          "image": "./assets/splash-background.png",
+          "resizeMode": "cover",
+          "imageWidth": 393,
+          "enableFullScreenImage_legacy": true,
+          "dark": {
+            "image": "./assets/splash-background.png",
+            "backgroundColor": "#07131F"
+          },
+          "ios": {
+            "backgroundColor": "#07131F",
+            "image": "./assets/splash-background.png",
+            "resizeMode": "cover"
+          },
+          "android": {
+            "backgroundColor": "#07131F",
+            "image": "./assets/splash-background.png",
+            "resizeMode": "cover"
+          }
+        }
+      ],
+      [
+        "@maplibre/maplibre-react-native",
+        {
+          "android": {
+            "locationEngine": "default"
+          }
+        }
+      ],
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0c8f35cf-8035-4936-80a9-5a6b7d8effac"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/0c8f35cf-8035-4936-80a9-5a6b7d8effac"
+    }
+  }
+}

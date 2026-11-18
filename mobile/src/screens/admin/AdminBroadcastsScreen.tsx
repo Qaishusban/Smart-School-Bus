@@ -1,0 +1,132 @@
+import React from 'react';
+import AdminPremiumCrudScreen, {
+  AdminPremiumCrudConfig,
+} from '../../components/admin/AdminPremiumCrudScreen';
+
+const config: AdminPremiumCrudConfig = {
+  table: 'school_broadcasts',
+  titleAr: 'إعلانات المدرسة',
+  titleEn: 'School Broadcasts',
+  subtitleAr: 'رسائل المدرسة وتحديد الجهة المستهدفة',
+  subtitleEn: 'School messages with precise recipient targeting',
+  icon: 'megaphone',
+  titleKey: 'title',
+  subtitleKeys: ['target_role', 'category', 'created_at'],
+  searchKeys: ['title', 'body', 'target_role', 'category'],
+  orderBy: 'created_at',
+  ascending: false,
+  fields: [
+    {
+      key: 'title',
+      labelAr: 'عنوان الإعلان',
+      labelEn: 'Broadcast Title',
+      icon: 'text-outline',
+      required: true,
+    },
+    {
+      key: 'body',
+      labelAr: 'نص الإعلان',
+      labelEn: 'Message',
+      type: 'multiline',
+      icon: 'chatbox-ellipses-outline',
+      required: true,
+    },
+    {
+      key: 'target_role',
+      labelAr: 'الفئة المستهدفة',
+      labelEn: 'Target Audience',
+      type: 'choice',
+      icon: 'people-outline',
+      allowClear: false,
+      defaultValue: 'all',
+      choices: [
+        { value: 'all', labelAr: 'الجميع', labelEn: 'Everyone' },
+        { value: 'parent', labelAr: 'أولياء الأمور', labelEn: 'Parents' },
+        { value: 'driver', labelAr: 'السائقون', labelEn: 'Drivers' },
+        { value: 'teacher', labelAr: 'المعلمون / المشرفون', labelEn: 'Teachers / Supervisors' },
+        { value: 'student', labelAr: 'طالب محدد', labelEn: 'Specific Student' },
+      ],
+    },
+    {
+      key: 'target_parent_id',
+      labelAr: 'ولي أمر محدد',
+      labelEn: 'Specific Parent',
+      type: 'relation',
+      relationTable: 'parents',
+      relationTitle: (row) => String(row.full_name ?? ''),
+      relationSubtitle: (row) => String(row.phone ?? ''),
+      icon: 'person-outline',
+    },
+    {
+      key: 'target_student_id',
+      labelAr: 'طالب محدد',
+      labelEn: 'Specific Student',
+      type: 'relation',
+      relationTable: 'students',
+      relationTitle: (row) => String(row.full_name ?? ''),
+      relationSubtitle: (row) =>
+        [row.grade_name ?? row.class_name, row.section_name].filter(Boolean).join(' • '),
+      icon: 'school-outline',
+    },
+    {
+      key: 'target_driver_id',
+      labelAr: 'سائق محدد',
+      labelEn: 'Specific Driver',
+      type: 'relation',
+      relationTable: 'drivers',
+      relationTitle: (row) => String(row.full_name ?? ''),
+      relationSubtitle: (row) => String(row.phone ?? ''),
+      icon: 'car-outline',
+    },
+    {
+      key: 'target_teacher_id',
+      labelAr: 'معلم / مشرف محدد',
+      labelEn: 'Specific Teacher / Supervisor',
+      type: 'relation',
+      relationTable: 'teachers',
+      relationTitle: (row) => String(row.full_name ?? ''),
+      relationSubtitle: (row) => String(row.phone ?? ''),
+      icon: 'school-outline',
+    },
+    {
+      key: 'target_bus_id',
+      labelAr: 'حافلة محددة',
+      labelEn: 'Specific Bus',
+      type: 'relation',
+      relationTable: 'buses',
+      relationTitle: (row) => `Bus ${String(row.bus_number ?? '')}`,
+      relationSubtitle: (row) => String(row.plate_number ?? ''),
+      icon: 'bus-outline',
+    },
+    {
+      key: 'category',
+      labelAr: 'التصنيف',
+      labelEn: 'Category',
+      type: 'choice',
+      icon: 'pricetag-outline',
+      defaultValue: 'general',
+      choices: [
+        { value: 'general', labelAr: 'عام', labelEn: 'General' },
+        { value: 'transport', labelAr: 'النقل', labelEn: 'Transport' },
+        { value: 'emergency', labelAr: 'طارئ', labelEn: 'Emergency' },
+        { value: 'announcement', labelAr: 'إعلان', labelEn: 'Announcement' },
+      ],
+    },
+    {
+      key: 'created_at',
+      labelAr: 'تاريخ الإرسال',
+      labelEn: 'Sent At',
+      detailOnly: true,
+      icon: 'time-outline',
+    },
+  ],
+  preparePayload: (payload, _editing, context) => ({
+    ...payload,
+    created_by: payload.created_by ?? context.userId,
+    target_role: payload.target_role ?? 'all',
+  }),
+};
+
+export default function AdminBroadcastsScreen({ navigation }: any) {
+  return <AdminPremiumCrudScreen config={config} navigation={navigation} />;
+}

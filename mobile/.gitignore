@@ -1,0 +1,20 @@
+
+.expo/
+
+# Local files and generated artifacts
+node_modules/
+.expo-shared/
+dist/
+web-build/
+coverage/
+*.log
+*.backup-*
+.gitignore.backup-*
+.env
+.env.local
+.env.*.local
+!.env.example
+.DS_Store
+
+supabase/.temp/
+*.tsbuildinfo

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "843124998517",
+    "project_id": "smart-school-bus-b36f3",
+    "storage_bucket": "smart-school-bus-b36f3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843124998517:android:832767e172ff7f0f9e533c",
+        "android_client_info": {
+          "package_name": "com.qjordansoft.smartschoolbuslive"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOG3NeB5QJ0bQcodUTXGlsDMaPqLeYrjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
